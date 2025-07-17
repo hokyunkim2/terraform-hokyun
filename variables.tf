@@ -1,10 +1,28 @@
+variable "resource_group_name" {
+    type = string
+    default = "test-terraform-rg"
+}
 
-//subnet
+variable "location" {
+    type = string
+    default = "koreacentral"
+}
+
+variable "vnet_name" {
+  type = string
+  default = "test-vnet"
+}
+
+variable "address_space" {
+    type = list(string)
+    default = ["10.0.0.0/16"]
+}
+
 variable "subnets" {
-    type = map(object({
-      address_prefixes = list(string)
-    }))
-    default = {
+  type = map(object({
+    address_prefixes = list(string)
+  }))
+  default = {
       "test-snet-1" = {
         address_prefixes = ["10.0.1.0/24"]
       }
@@ -17,37 +35,12 @@ variable "subnets" {
     }
 }
 
-variable "nsg_name_linux" {
-    type = string
-    default = "test-nsg-linux"
+//storage account
+variable "replication_type" {
+  description = "복제 옵션 (LRS, GRS 등)"
+  type        = string
+  default     = "LRS"
 }
-
-variable "Linux_vm_name" {
-    description = "Li"
-    type = string
-    default = "test-linux-vm"
-}
-
-variable "Linux_vm_size" {
-    description = "VM SKU"
-    type = string
-    default = "Standard_B1s"
-}
-
-variable "Linux_admin_username" {
-    description = "Linux VM 관리자 사용자 이름"
-    type = string
-    default = "azureuser"
-}
-
-variable "Linux_admin_password" {
-    description = "Linux VM 관리자 암호"
-    type = string
-    default = "KTP@ssw0rd123"
-    sensitive = true
-}
-
-
 
 variable "nsg_name_windows" {
     type = string
@@ -100,10 +93,6 @@ variable "account_tier" {
     default = "Standard"
 }
 
-variable "replication_type" {
-    type = string
-    default = "LRS"
-}
 
 variable "container_name" {
     type = string
