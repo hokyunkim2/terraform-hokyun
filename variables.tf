@@ -90,3 +90,28 @@ variable "app_service_name" {
 }
 
 
+variable "storage_account_name" {
+    type = string
+    default = "hokyun0717storage"
+}
+
+variable "account_tier" {
+    type = string
+    default = "Standard"
+}
+
+variable "replication_type" {
+    type = string
+    default = "LRS"
+}
+
+variable "container_name" {
+    type = string
+    default = "tfstate"
+}
+
+variable "container_access_type" {
+    type = string
+    default = "private"
+}
+
